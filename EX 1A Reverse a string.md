@@ -1,70 +1,46 @@
-# EX 1B Merge Sort
+# EX 1C Quick Sort
 ## DATE: 08/09/2025
 ## AIM:
-To write a python program to sort the first half of the list using merge sort.
+To write a python program to implement quick sort using tha last element as pivot on the list of float values.
 
 ## Algorithm
-1. To implement the Merge Sort algorithm in Python for sorting an array of floating-point numbers entered by the user. 
-2. The program uses the Divide and Conquer strategy to divide the array and then merge them in sorted order.
-3. The user is prompted to input n numbers, which are stored in a Python list using append().
-4. This function splits the array recursively into subarrays until single elements are left. 
-5.  Merges two sorted halves by comparing elements from left (L) and right (R) subarrays.
-6.  The final sorted array is printed 
+1. Select the last element as the pivot and partition the array around it.
+2. Place elements smaller than the pivot to its left and larger to its right.
+3. Recursively apply Quick Sort to the left sub-array before the pivot.
+4. Recursively apply Quick Sort to the right sub-array after the pivot. 
+5. Repeat until the entire array is sorted and then print the sorted array.   
 
 ## Program:
 
-### Program to implement Merge Sort
+### Program to implement implement quick sort using the last element as pivot on the list of float values.
 **Developed by:** SRIRAJ G 
 **Register Number:** 212222040161
 ```
-def merge(arr, l, m, r):
-    n1=m-l+1
-    n2=r-m
-    L=[0]*(n1)
-    R=[0]*(n2)
-    for i in range(0, n1):
-        L[i]=arr[l + i]
- 
-    for j in range(0, n2):
-        R[j]=arr[m + 1 + j]
-    i = 0     
-    j = 0     
-    k = l     
-    while i < n1 and j < n2:
-        if L[i] <= R[j]:
-            arr[k] = L[i]
+def fun(arr,low,high):
+    pivot=arr[high]
+    i=low-1
+    for j in range(low,high):
+        if arr[j]<pivot:
             i += 1
-        else:
-            arr[k] = R[j]
-            j += 1
-        k += 1
-    while i < n1:
-        arr[k] = L[i]
-        i += 1
-        k += 1
-    while j < n2:
-        arr[k] = R[j]
-        j += 1
-        k += 1
-def mergeSort(arr, l, r):
-    if l < r:
-        m = l+(r-l)//2
-        mergeSort(arr, m+1, r)
-        merge(arr, l, m, r)
-arr =[] 
-n =int(input())
+            arr[i],arr[j]=arr[j],arr[i]
+    arr[i+1],arr[high]=arr[high],arr[i+1]
+    return i+1
+def quickSort(arr,low,high):
+    if low<high:
+        pi=fun(arr,low,high)
+        quickSort(arr,low,pi-1)
+        quickSort(arr,pi+1,high)
+n=int(input())
+arr=[]
 for i in range(n):
-    arr.append(float(input()))
-print("Given array is")
+     arr.append(float(input())) 
+quickSort(arr,0,len(arr)-1)
+print("Sorted array is:")
 for i in range(n):
-    print("%.1f" % arr[i],end=" ")
-mergeSort(arr, 0, n-1)
-print("\n\nSorted array is")
-for i in range(n):
-    print("%.1f" % arr[i],end=" ")
+    print("%.1f" %arr[i])
 ```
 ## Output:
-![Screenshot 2025-05-24 172030](https://github.com/user-attachments/assets/db6498df-4914-45b0-ac13-f202dd991555)
+![Screenshot 2025-05-24 172715](https://github.com/user-attachments/assets/b78926e9-edd1-41f3-9f5e-96669af82150)
 
 ## Result:
-The program successfully sorts the first half of the given array using merge sort. where only the first half is sorted, and the second half remains unchanged.
+The program successfully sorts the input array using the QuickSort algorithm, arranging the elements in ascending order.

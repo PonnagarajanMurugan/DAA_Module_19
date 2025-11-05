@@ -13,8 +13,8 @@ To write a python program for a search function with parameter list name and the
 ## Program:
 
 ### Program to implement a search function with parameter list name and the value to be searched using string values.
-**Developed by:** SRIRAJ G  
-**Register Number:** 212222040161
+**Developed by:** PON NAGARAJAN M  
+**Register Number:** 212222040115
 ```
 def search(List,n):
     for i in range(len(List)):
